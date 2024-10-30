@@ -1,0 +1,41 @@
+# String Encode and Decode
+
+# Design an algorithm to encode a list of strings to a single string. The encoded string is then decoded back to the original list of strings.
+
+# Please implement encode and decode
+
+# Example 1:
+
+# Input: ["neet","code","love","you"]
+
+# Output:["neet","code","love","you"]
+# Example 2:
+
+# Input: ["we","say",":","yes"]
+
+# Output: ["we","say",":","yes"]
+# Constraints:
+
+# 0 <= strs.length < 100
+# 0 <= strs[i].length < 200
+# strs[i] contains only UTF-8 characters.
+
+class Solution:
+
+    def encode(self, strs: List[str]) -> str:
+        res = ""
+        for s in strs:
+            res += str(len(s)) + "#" + s
+        return res
+
+    def decode(self, s: str) -> List[str]:
+        res, i = [], 0
+
+        while i < len(s):  # Corrected from `len(str)` to `len(s)`
+            j = i
+            while s[j] != "#":  # Corrected from `str[j]` to `s[j]`
+                j += 1
+            length = int(s[i:j])  # Corrected from `str[i:j]` to `s[i:j]`
+            res.append(s[j + 1 : j + 1 + length])  # Corrected from `str` to `s`
+            i = j + 1 + length
+        return res
