@@ -1,6 +1,6 @@
 class Solution:
     def longestOnes(self, nums: List[int], k: int) -> int:  
-        if not nums or not k:
+        if not nums:
             return 0
         
         res = 0
